@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+//TODO:Move the necessary data to the Parent Game Component
+
 export class Player extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,7 @@ export class Player extends Component {
       cash: this.props.playerData.cash,
     });
   }
-  coo;
+
   callOrCheck() {
     if (this.state.requiredCall === 0) {
       console.log("Check");

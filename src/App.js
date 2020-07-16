@@ -17,6 +17,7 @@ export class App extends Component {
     this.setState({ playersData: playersData });
     this.setState({ gameReady: true });
   }
+
   render() {
     return (
       <div className="App">
