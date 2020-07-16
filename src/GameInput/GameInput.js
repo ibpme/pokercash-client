@@ -25,7 +25,13 @@ export class GameInput extends Component {
     for (let i = 0; i < this.state.numberOfTotalPlayers; i++) {
       const name = this.state[String("player" + i)];
       const cash = this.state[String("cash" + i)];
-      const playerObject = { number: i, name: name, cash: cash };
+      const playerObject = {
+        number: i,
+        name: name,
+        cash: cash,
+        fold: false,
+        requiredCall: 0,
+      };
       playersArray.push(playerObject);
     }
     this.props.submitPlayers(playersArray);
