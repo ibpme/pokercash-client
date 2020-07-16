@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { Component } from "react";
+import Game from "./Game/Game";
+import GameInput from "./GameInput/GameInput";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gameReady: false,
+      playersData: [],
+    };
+    this.submitPlayers = this.submitPlayers.bind(this);
+  }
+  submitPlayers(playersArray) {
+    const playersData = playersArray;
+    this.setState({ playersData: playersData });
+    this.setState({ gameReady: true });
+  }
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          {!this.state.gameReady ? (
+            <GameInput submitPlayers={this.submitPlayers} />
+          ) : (
+            <Game
+              numofTotalPlayers={this.state.playersData.length}
+              playersData={this.state.playersData}
+            />
+          )}
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
