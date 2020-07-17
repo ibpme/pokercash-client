@@ -55,20 +55,32 @@ export class GameInput extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <form
+        className="bg-blue-800 shadow-md rounded  p-8 m-4"
+        autoComplete="off"
+        onSubmit={this.handleSubmit}
+      >
+        <label className="block text-white text-sm font-bold mb-2">
           Number of players:
-          <input
-            min="2"
-            max="9"
-            name="numberOfTotalPlayers"
-            type="number"
-            value={this.state.numberOfTotalPlayers}
-            onChange={this.handleInputChange}
-          />
         </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+          min="2"
+          max="9"
+          name="numberOfTotalPlayers"
+          type="number"
+          value={this.state.numberOfTotalPlayers}
+          onChange={this.handleInputChange}
+        />
         {this.renderPlayerInput()}
-        <button onSubmit={this.handleSubmit}>Submit</button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-5 py-1 px-4 rounded-full"
+          variant="contained"
+          color="primary"
+          onSubmit={this.handleSubmit}
+        >
+          Submit
+        </button>
       </form>
     );
   }

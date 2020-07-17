@@ -44,14 +44,26 @@ export class Player extends Component {
   render() {
     return (
       <div>
-        <h3>Player Name : {this.props.playerData.name}</h3>
-        <p>Player Cash : {this.props.playerData.cash}</p>
-        <p>Required Call: {this.props.playerData.requiredCall}</p>
-        <div>
-          <button onClick={this.callOrCheck}>
+        <div className="max-w-m bg-teal-600 rounded overflow-hidden shadow-lg m-4">
+          <span className="inline-block px-3 py-1 text-base font-semibold text-gray-100 mr-2">
+            Name : {this.props.playerData.name}
+          </span>
+          <span className="inline-block px-3 py-1 text-base font-semibold text-gray-100 mr-2">
+            Cash : {this.props.playerData.cash}
+          </span>
+          <span className="inline-block px-3 py-1 text-base font-semibold text-yellow-400 mr-2">
+            Required Call: {this.props.playerData.requiredCall}
+          </span>
+        </div>
+        <div className="inline-flex">
+          <button
+            className="bg-green-400 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mx-2 rounded shadow"
+            onClick={this.callOrCheck}
+          >
             {this.props.playerData.requiredCall === 0 ? "Check" : "Call"}
           </button>
           <input
+            className="text-blue-800 px-2 mx-2 rounded shadow"
             onChange={this.handleRaiseChange}
             min={this.props.maxRaise}
             max={this.props.playerData.cash}
@@ -59,8 +71,18 @@ export class Player extends Component {
             name="raiseAmount"
             type="number"
           />
-          <button onClick={this.raise}>Raise</button>
-          <button onClick={this.fold}>Fold</button>
+          <button
+            className="bg-orange-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mx-2 rounded shadow"
+            onClick={this.raise}
+          >
+            Raise
+          </button>
+          <button
+            className="bg-red-500 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mx-2 rounded shadow"
+            onClick={this.fold}
+          >
+            Fold
+          </button>
         </div>
       </div>
     );

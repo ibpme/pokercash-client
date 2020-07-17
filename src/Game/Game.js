@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Player from "../Player/Player";
 
-//TODO: Get all the game neccasary game logic to this component
-//      Make component didmount to call the initial props for the player data
 // Make Turn Design and Prevention Code
 export class Game extends Component {
   constructor(props) {
@@ -25,7 +23,6 @@ export class Game extends Component {
     };
     this.addToPot = this.addToPot.bind(this);
     this.adjustMaxRaise = this.adjustMaxRaise.bind(this);
-    // this.renderPlayers = this.renderPlayers.bind(this);
     this.playerCheckOrCall = this.playerCheckOrCall.bind(this);
     this.playerRaise = this.playerRaise.bind(this);
     this.playerFold = this.playerFold.bind(this);
@@ -149,10 +146,18 @@ export class Game extends Component {
     }
     return (
       <div>
-        <p>Number of Total players: {this.state.numofTotalPlayers}</p>
-        <p>Number of Active players: {this.state.numOfActivePlayers}</p>
-        <p>Pot: {this.state.pot}</p>
-        <p>Max Raise: {this.state.maxRaise}</p>
+        <div className="max-w-m bg-blue-400 rounded overflow-hidden shadow-lg m-4">
+          <p className="inline px-2 font-bold ">
+            Total players: {this.state.numofTotalPlayers}
+          </p>
+          <p className="inline px-2 font-bold">
+            Active players: {this.state.numOfActivePlayers}
+          </p>
+          <p className="font-bold text-black">Pot: {this.state.pot}</p>
+          <p className="font-bold text-red-700">
+            Max Raise: {this.state.maxRaise}
+          </p>
+        </div>
         {this.renderPlayers()}
       </div>
     );
