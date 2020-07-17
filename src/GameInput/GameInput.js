@@ -30,6 +30,7 @@ export class GameInput extends Component {
         name: name,
         cash: cash,
         fold: false,
+        turn: true,
         requiredCall: 0,
       };
       playersArray.push(playerObject);

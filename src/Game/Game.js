@@ -3,7 +3,7 @@ import Player from "../Player/Player";
 
 //TODO: Get all the game neccasary game logic to this component
 //      Make component didmount to call the initial props for the player data
-// Make Turns
+// Make Turn Design and Prevention Code
 export class Game extends Component {
   constructor(props) {
     super(props);
@@ -51,12 +51,42 @@ export class Game extends Component {
   adjustMaxRaise(amount) {
     this.setState({ maxRaise: amount });
   }
-
+  //We might want to make adjustRequiredCalls and checkWinner the same function
   adjustRequiredCalls() {
     const immutateplayersData = this.state.playersData.slice();
     if (immutateplayersData.every((player) => player.requiredCall === 0)) {
       this.setState({ maxRaise: 0 });
     }
+    this.checkWinner();
+  }
+
+  checkWinner() {
+    const immutateplayersData = this.state.playersData.slice();
+    let numOfActive = 0;
+    immutateplayersData.forEach((player) => {
+      numOfActive = player.fold ? numOfActive : numOfActive + 1;
+    });
+    numOfActive === 1
+      ? this.isWinner()
+      : this.setState({ numOfActivePlayers: numOfActive });
+  }
+
+  isWinner() {
+    const immuteState = Object.assign({}, this.state);
+    const winner = immuteState.playersData.find((player) => !player.fold);
+    winner.cash += immuteState.pot;
+
+    immuteState.maxRaise = 0;
+    this.setState({ immuteState });
+    this.newRound();
+  }
+
+  newRound() {
+    const immuteState = Object.assign({}, this.state);
+    immuteState.playersData.forEach((player) => {
+      player.fold = false;
+    });
+    this.setState({ playersData: immuteState.playersData, pot: 0 });
   }
 
   //Player Actions Methods
@@ -86,7 +116,15 @@ export class Game extends Component {
     this.adjustMaxRaise(amount);
     this.adjustRequiredCalls();
   }
-  playerFold(index) {}
+
+  playerFold(index) {
+    const immutateplayersData = this.state.playersData.slice();
+    const playerData = immutateplayersData[index];
+    playerData.fold = true;
+    playerData.requiredCall = 0;
+    this.setState({ playersData: immutateplayersData });
+    this.adjustRequiredCalls();
+  }
 
   renderPlayers() {
     return this.state.playersData.map((playerData, index) => {

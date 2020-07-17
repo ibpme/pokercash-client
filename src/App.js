@@ -2,6 +2,7 @@ import "./App.css";
 import React, { Component } from "react";
 import Game from "./Game/Game";
 import GameInput from "./GameInput/GameInput";
+//Style the Components
 
 export class App extends Component {
   constructor(props) {
