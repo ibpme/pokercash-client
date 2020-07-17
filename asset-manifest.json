@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/pokercash-client/static/css/main.ebda5a02.chunk.css",
+    "main.js": "/pokercash-client/static/js/main.53a2e145.chunk.js",
+    "main.js.map": "/pokercash-client/static/js/main.53a2e145.chunk.js.map",
+    "runtime-main.js": "/pokercash-client/static/js/runtime-main.23c78657.js",
+    "runtime-main.js.map": "/pokercash-client/static/js/runtime-main.23c78657.js.map",
+    "static/js/2.d348f351.chunk.js": "/pokercash-client/static/js/2.d348f351.chunk.js",
+    "static/js/2.d348f351.chunk.js.map": "/pokercash-client/static/js/2.d348f351.chunk.js.map",
+    "index.html": "/pokercash-client/index.html",
+    "precache-manifest.dab7b4c0b628b27b669f9d9f11b7aa3b.js": "/pokercash-client/precache-manifest.dab7b4c0b628b27b669f9d9f11b7aa3b.js",
+    "service-worker.js": "/pokercash-client/service-worker.js",
+    "static/css/main.ebda5a02.chunk.css.map": "/pokercash-client/static/css/main.ebda5a02.chunk.css.map",
+    "static/js/2.d348f351.chunk.js.LICENSE.txt": "/pokercash-client/static/js/2.d348f351.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.23c78657.js",
+    "static/js/2.d348f351.chunk.js",
+    "static/css/main.ebda5a02.chunk.css",
+    "static/js/main.53a2e145.chunk.js"
+  ]
+}
