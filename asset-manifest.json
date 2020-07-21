@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/pokercash-client/static/css/main.12d63b05.chunk.css",
-    "main.js": "/pokercash-client/static/js/main.0cd96df7.chunk.js",
-    "main.js.map": "/pokercash-client/static/js/main.0cd96df7.chunk.js.map",
+    "main.js": "/pokercash-client/static/js/main.471d0011.chunk.js",
+    "main.js.map": "/pokercash-client/static/js/main.471d0011.chunk.js.map",
     "runtime-main.js": "/pokercash-client/static/js/runtime-main.23c78657.js",
     "runtime-main.js.map": "/pokercash-client/static/js/runtime-main.23c78657.js.map",
     "static/js/2.d348f351.chunk.js": "/pokercash-client/static/js/2.d348f351.chunk.js",
     "static/js/2.d348f351.chunk.js.map": "/pokercash-client/static/js/2.d348f351.chunk.js.map",
     "index.html": "/pokercash-client/index.html",
-    "precache-manifest.26b28c8865e32d251f760dbd11510240.js": "/pokercash-client/precache-manifest.26b28c8865e32d251f760dbd11510240.js",
+    "precache-manifest.655d865c5685f5be8baf6251de50d2ed.js": "/pokercash-client/precache-manifest.655d865c5685f5be8baf6251de50d2ed.js",
     "service-worker.js": "/pokercash-client/service-worker.js",
     "static/css/main.12d63b05.chunk.css.map": "/pokercash-client/static/css/main.12d63b05.chunk.css.map",
     "static/js/2.d348f351.chunk.js.LICENSE.txt": "/pokercash-client/static/js/2.d348f351.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.23c78657.js",
     "static/js/2.d348f351.chunk.js",
     "static/css/main.12d63b05.chunk.css",
-    "static/js/main.0cd96df7.chunk.js"
+    "static/js/main.471d0011.chunk.js"
   ]
 }

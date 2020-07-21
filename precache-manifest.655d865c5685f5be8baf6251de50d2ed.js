@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fd8b91a0fece909b66f0aef097226bf6",
+    "revision": "53c2049dd7665f586e7abfd84e3ddc30",
     "url": "/pokercash-client/index.html"
   },
   {
-    "revision": "83715735c8425c682280",
+    "revision": "7f4025be136840af43cf",
     "url": "/pokercash-client/static/css/main.12d63b05.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pokercash-client/static/js/2.d348f351.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "83715735c8425c682280",
-    "url": "/pokercash-client/static/js/main.0cd96df7.chunk.js"
+    "revision": "7f4025be136840af43cf",
+    "url": "/pokercash-client/static/js/main.471d0011.chunk.js"
   },
   {
     "revision": "8d273b31c46022fa62e0",
