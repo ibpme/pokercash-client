@@ -19,6 +19,7 @@ export class Game extends Component {
       //   cash: cashValue,
       //   fold: false,
       //   requiredCall: 0,
+      //   turn : false
       // }
     };
     this.addToPot = this.addToPot.bind(this);
@@ -26,6 +27,7 @@ export class Game extends Component {
     this.playerCheckOrCall = this.playerCheckOrCall.bind(this);
     this.playerRaise = this.playerRaise.bind(this);
     this.playerFold = this.playerFold.bind(this);
+    this.setTurn = this.setTurn.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +40,28 @@ export class Game extends Component {
   }
 
   //Game Actions Methods
+  nextTurn() {
+    const immutateplayersData = this.state.playersData.slice();
+    const playerIndex = immutateplayersData.findIndex((player) => player.turn);
+    console.log(playerIndex);
+
+    let nextPlayerIndex = Number(
+      (playerIndex + 1) % Number(this.state.numofTotalPlayers)
+    );
+    while (immutateplayersData[nextPlayerIndex].fold) {
+      nextPlayerIndex = Number(
+        (nextPlayerIndex + 1) % Number(this.state.numofTotalPlayers)
+      );
+    }
+    this.setTurn(nextPlayerIndex);
+  }
+  setTurn(playerIndex) {
+    const immutateplayersData = this.state.playersData.slice();
+    immutateplayersData.forEach((player) => {
+      player.turn = player.number === playerIndex;
+    });
+    this.setState({ playersData: immutateplayersData });
+  }
 
   addToPot(amount) {
     this.setState((prevState) => {
@@ -63,9 +87,13 @@ export class Game extends Component {
     immutateplayersData.forEach((player) => {
       numOfActive = player.fold ? numOfActive : numOfActive + 1;
     });
-    numOfActive === 1
-      ? this.isWinner()
-      : this.setState({ numOfActivePlayers: numOfActive });
+
+    if (numOfActive === 1) {
+      this.isWinner();
+    } else {
+      this.nextTurn();
+      this.setState({ numOfActivePlayers: numOfActive });
+    }
   }
 
   isWinner() {
@@ -84,6 +112,7 @@ export class Game extends Component {
       player.fold = false;
     });
     this.setState({ playersData: immuteState.playersData, pot: 0 });
+    this.setTurn(0);
   }
 
   //Player Actions Methods

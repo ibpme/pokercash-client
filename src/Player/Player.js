@@ -43,7 +43,13 @@ export class Player extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={
+          !this.props.playerData.turn || this.props.playerData.fold
+            ? { opacity: 0.5 }
+            : {}
+        }
+      >
         <div className="max-w-m bg-teal-600 rounded overflow-hidden shadow-lg m-4">
           <span className="inline-block px-3 py-1 text-base font-semibold text-gray-100 mr-2">
             Name : {this.props.playerData.name}
@@ -57,6 +63,7 @@ export class Player extends Component {
         </div>
         <div className="inline-flex">
           <button
+            disabled={!this.props.playerData.turn || this.props.playerData.fold}
             className="bg-green-400 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mx-2 rounded shadow"
             onClick={this.callOrCheck}
           >
@@ -72,12 +79,14 @@ export class Player extends Component {
             type="number"
           />
           <button
+            disabled={!this.props.playerData.turn || this.props.playerData.fold}
             className="bg-orange-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mx-2 rounded shadow"
             onClick={this.raise}
           >
             Raise
           </button>
           <button
+            disabled={!this.props.playerData.turn || this.props.playerData.fold}
             className="bg-red-500 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mx-2 rounded shadow"
             onClick={this.fold}
           >
