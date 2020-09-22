@@ -17,21 +17,20 @@ export class Player extends Component {
   }
   callOrCheck() {
     if (this.props.playerData.requiredCall === 0) {
-      console.log("Check");
-      this.props.playerCheckOrCall(this.props.index);
+      this.props.updateGame(this.props.index, "checkOrCall");
     } else {
-      console.log("Call");
-      this.props.playerCheckOrCall(this.props.index);
+      this.props.updateGame(this.props.index, "checkOrCall");
     }
   }
   raise() {
-    const immuteState = Object.assign({}, this.state);
-    const amount = Number(immuteState.raiseAmount);
-    this.props.playerRaise(this.props.index, amount);
+    this.props.updateGame(
+      this.props.index,
+      "raise",
+      Number(this.state.raiseAmount)
+    );
   }
   fold() {
-    console.log("fold");
-    this.props.playerFold(this.props.index);
+    this.props.updateGame(this.props.index, "fold");
   }
 
   handleRaiseChange(event) {

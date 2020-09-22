@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Player from "../Player/Player";
+import GameLogic from "../utils/gameAPI";
 
-// Make Turn Design and Prevention Code
 export class Game extends Component {
   constructor(props) {
     super(props);
@@ -12,26 +12,11 @@ export class Game extends Component {
       status: true,
       maxRaise: 0,
       playersData: [],
-      // Players data is the one we will manipulate containing array of objects
-      // {
-      //   number: index,
-      //   name: nameVAlue,
-      //   cash: cashValue,
-      //   fold: false,
-      //   requiredCall: 0,
-      //   turn : false
-      // }
     };
-    this.addToPot = this.addToPot.bind(this);
-    this.adjustMaxRaise = this.adjustMaxRaise.bind(this);
-    this.playerCheckOrCall = this.playerCheckOrCall.bind(this);
-    this.playerRaise = this.playerRaise.bind(this);
-    this.playerFold = this.playerFold.bind(this);
-    this.setTurn = this.setTurn.bind(this);
+    this.updateGame = this.updateGame.bind(this);
   }
 
   componentDidMount() {
-    //TODO: Research getDerivedStateFromProps
     this.setState({
       playersData: this.props.playersData,
       numOfActivePlayers: this.props.numofTotalPlayers,
@@ -39,117 +24,10 @@ export class Game extends Component {
     });
   }
 
-  //Game Actions Methods
-  nextTurn() {
-    const immutateplayersData = this.state.playersData.slice();
-    const playerIndex = immutateplayersData.findIndex((player) => player.turn);
-    console.log(playerIndex);
+  updateGame(index, action, amount = 0) {
+    const updatedGame = GameLogic(this.state, index, action, amount);
 
-    let nextPlayerIndex = Number(
-      (playerIndex + 1) % Number(this.state.numofTotalPlayers)
-    );
-    while (immutateplayersData[nextPlayerIndex].fold) {
-      nextPlayerIndex = Number(
-        (nextPlayerIndex + 1) % Number(this.state.numofTotalPlayers)
-      );
-    }
-    this.setTurn(nextPlayerIndex);
-  }
-  setTurn(playerIndex) {
-    const immutateplayersData = this.state.playersData.slice();
-    immutateplayersData.forEach((player) => {
-      player.turn = player.number === playerIndex;
-    });
-    this.setState({ playersData: immutateplayersData });
-  }
-
-  addToPot(amount) {
-    this.setState((prevState) => {
-      return { pot: prevState.pot + amount };
-    });
-  }
-
-  adjustMaxRaise(amount) {
-    this.setState({ maxRaise: amount });
-  }
-  //We might want to make adjustRequiredCalls and checkWinner the same function
-  adjustRequiredCalls() {
-    const immutateplayersData = this.state.playersData.slice();
-    if (immutateplayersData.every((player) => player.requiredCall === 0)) {
-      this.setState({ maxRaise: 0 });
-    }
-    this.checkWinner();
-  }
-
-  checkWinner() {
-    const immutateplayersData = this.state.playersData.slice();
-    let numOfActive = 0;
-    immutateplayersData.forEach((player) => {
-      numOfActive = player.fold ? numOfActive : numOfActive + 1;
-    });
-
-    if (numOfActive === 1) {
-      this.isWinner();
-    } else {
-      this.nextTurn();
-      this.setState({ numOfActivePlayers: numOfActive });
-    }
-  }
-
-  isWinner() {
-    const immuteState = Object.assign({}, this.state);
-    const winner = immuteState.playersData.find((player) => !player.fold);
-    winner.cash += immuteState.pot;
-
-    immuteState.maxRaise = 0;
-    this.setState({ immuteState });
-    this.newRound();
-  }
-
-  newRound() {
-    const immuteState = Object.assign({}, this.state);
-    immuteState.playersData.forEach((player) => {
-      player.fold = false;
-    });
-    this.setState({ playersData: immuteState.playersData, pot: 0 });
-    this.setTurn(0);
-  }
-
-  //Player Actions Methods
-  playerCheckOrCall(index) {
-    const immutateplayersData = this.state.playersData.slice();
-    const playerData = immutateplayersData[index];
-    playerData.cash -= playerData.requiredCall;
-    this.addToPot(playerData.requiredCall);
-    playerData.requiredCall = 0;
-    this.setState({ playersData: immutateplayersData });
-    this.adjustRequiredCalls();
-  }
-
-  playerRaise(index, amount) {
-    const immutateplayersData = this.state.playersData.slice();
-    const playerData = immutateplayersData[index];
-    //Set Condition here raise must be greated than raise max and
-    playerData.cash -= amount;
-    this.addToPot(amount);
-    playerData.requiredCall = 0;
-    immutateplayersData.forEach((player) => {
-      if (player.number !== playerData.number) {
-        player.requiredCall += amount - this.state.maxRaise;
-      }
-    });
-    this.setState({ playersData: immutateplayersData });
-    this.adjustMaxRaise(amount);
-    this.adjustRequiredCalls();
-  }
-
-  playerFold(index) {
-    const immutateplayersData = this.state.playersData.slice();
-    const playerData = immutateplayersData[index];
-    playerData.fold = true;
-    playerData.requiredCall = 0;
-    this.setState({ playersData: immutateplayersData });
-    this.adjustRequiredCalls();
+    this.setState(updatedGame);
   }
 
   renderPlayers() {
@@ -161,9 +39,7 @@ export class Game extends Component {
           playerData={playerData}
           addToPot={this.addToPot}
           maxRaise={this.state.maxRaise}
-          playerCheckOrCall={this.playerCheckOrCall}
-          playerRaise={this.playerRaise}
-          playerFold={this.playerFold}
+          updateGame={this.updateGame}
         />
       );
     });
