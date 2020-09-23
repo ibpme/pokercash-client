@@ -19,9 +19,11 @@ Under the utils file the logic and game API can be found [here](https://github.c
 Because Pokercash uses React, the API takes in a **GameState** , which contains the Player Data State. Any changes to the **PlayerData** state will call the GameAPI.
 
 Data Structure for GameState and PlayerData :
+
 ![alt text](https://github.com/ibpme/pokercash-client/blob/master/PokerGame-Data%20Structure.png)
 
 GameAPI and Logic :
+
 ![alt text](https://github.com/ibpme/pokercash-client/blob/master/PokerGame-Player%20Methods.png)
 
 
