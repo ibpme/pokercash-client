@@ -26,7 +26,6 @@ export class Game extends Component {
 
   updateGame(index, action, amount = 0) {
     const updatedGame = GameLogic(this.state, index, action, amount);
-
     this.setState(updatedGame);
   }
 

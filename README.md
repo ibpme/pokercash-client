@@ -1,15 +1,26 @@
 # PokerCash
+
 PokerCash is an open source remote tool intended as a replacement for Poker Chips in playing Texas Holdem Poker Games.
 PokerCash is created using ReactJS with create-react-app.
 
 ## Current Version : 0.2
+
 The current version is now available [here](https://ibpme.github.io/pokercash-client/)
+
 ### Beta
-* v0.1 - playable with no styles in the web, few bugs are expected.
-* v0.2 - GAME API connected see src UTILS for details
 
-## Upcoming Versions
-Coming Soon !!!
+- v0.1 - playable with no styles in the web, few bugs are expected.
+- v0.2 - GAME API connected see src UTILS for details
 
-## How it works:
-### Logic of The Code
+### GameAPI
+
+Under the utils file the logic and game API can be found [here](https://github.com/ibpme/pokercash-client/blob/master/src/utils/gameAPI.js)
+
+Because Pokercash uses React, the API takes in a **GameState** , which contains the Player Data State. Any changes to the **PlayerData** state will call the GameAPI.
+
+Details:
+
+## Coming soon:
+
+- An online multiplayer version of PokerCash is in development
+- Better Styling and UI
